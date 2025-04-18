@@ -23,7 +23,6 @@
 }
 
 .form-container-login-subcontainer {
-    border: 1px solid red;
     position: relative;
     z-index: 10;
 }
