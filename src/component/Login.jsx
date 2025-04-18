@@ -4,16 +4,13 @@ import { checkValidSignInInput } from '../utils/validate';
 import { checkValidSignUpInput } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from '../utils/firebase';
-import { useNavigate } from 'react-router';
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
-  const navigate = useNavigate();
 
   const toggleIsSignInForm = () => {
     setIsSignInForm(!isSignInForm)
     setErrorMessage(null);
-    setSuccessMessage(null);
     emailRef.current.value = "";
     passwordRef.current.value = "";
     nameRef.current.value = "";
@@ -35,7 +32,6 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      navigate('/browser');
     })
     .catch((error) => {
       setErrorMessage("Invalid credentials. Or try Signup if you are a new user.");
@@ -53,7 +49,6 @@ const Login = () => {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      navigate('/browser');
     })
     .catch((error) => {
       setErrorMessage("Signup not successful. Try again.");

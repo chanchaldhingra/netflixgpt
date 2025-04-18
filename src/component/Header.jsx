@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import logoImage from '../assets/Netflix_Logo_PMS.png';
 import {auth} from '../utils/firebase';
 import { signOut } from 'firebase/auth';
@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '../utils/userSlice';
 import { useSelector } from 'react-redux';
+import { onAuthStateChanged } from 'firebase/auth';
+import { addUser } from '../utils/userSlice';
 
 const Header = () => {
 
@@ -20,6 +22,22 @@ const Header = () => {
     }).catch((error) => {
     });
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if(user){
+        dispatch(addUser({uid: user.uid, email: user.email, displayName: user.displayName}));
+        navigate('/browser');
+      }
+      else {
+        dispatch(removeUser());
+        navigate('/');
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
 
   return (
     <div className='absolute px-8 py-2 z-10 flex justify-between items-center w-full bg-black bg-opacity-50'>
