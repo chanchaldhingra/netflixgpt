@@ -40,7 +40,7 @@ const Header = () => {
 
 
   return (
-    <div className='absolute px-8 py-2 z-10 flex justify-between items-center w-full bg-black bg-opacity-50'>
+    <div className='absolute px-8 py-2 z-10 flex justify-between items-center w-full bg-gradient-to-b from-black to-whiteabsolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between'>
       <img src={logoImage} alt="logo" className='w-44' />
       { user && 
         (<button className='text-lg text-white cursor-pointer' onClick={handleSignOut}>(Sign out)</button>)
