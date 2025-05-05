@@ -1,11 +1,11 @@
 import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router'
+import { createHashRouter, RouterProvider } from 'react-router'
 import Login from './Login';
 import Browser from './Browser';
 
 
 const Body = () => {
-  const appRouter = createBrowserRouter([
+  const appRouter = createHashRouter([
     {
       path: '/',
       element: <Login />
