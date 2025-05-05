@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: "/netflixgpt/",
+  base: "/",
   server: {
     open: true,
     port: 3001,
